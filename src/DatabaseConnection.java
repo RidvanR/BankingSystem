@@ -14,8 +14,8 @@ public class DatabaseConnection {
 
                 // Ersetzen Sie die folgenden Werte durch Ihre Datenbankinformationen
                 String url = "jdbc:mysql://localhost:3306/beispiel";
-                String username = "username";
-                String password = "passwort";
+                String username = "root";
+                String password = "Oppenheimer68@";
 
                 connection = DriverManager.getConnection(url, username, password);
             } catch (ClassNotFoundException | SQLException e) {
