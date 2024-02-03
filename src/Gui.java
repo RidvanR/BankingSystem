@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,28 +12,42 @@ public class Gui implements ActionListener {
     Gui() {
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLayout(new BorderLayout());
+        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       // Header
         JLabel text = new JLabel("Willkommen auf Ihrem Bankkonto");
-        text.setBounds(100,10,300,40);
-
-
-        this.saldoButton.setBounds(10,100,200,40);
+        centerPanel.add(text);
+        text.setPreferredSize(new Dimension(300,60));
+        text.setFont(new Font("DIALOG", Font.BOLD, 18));
+        // Space
+        JLabel spaceOne = new JLabel("");
+        spaceOne.setPreferredSize(new Dimension(300,50));
+        centerPanel.add(spaceOne);
+        // SaldoButton
         this.saldoButton.addActionListener((ActionListener) this);
-
-
-        this.einzahlenButton.setBounds(10,200,100,40);
+        centerPanel.add(this.saldoButton);
+        saldoButton.setPreferredSize(new Dimension(150, 40));
+        // Space
+        JLabel space = new JLabel("");
+        space.setPreferredSize(new Dimension(300,20));
+        centerPanel.add(space);
+        // EinzahlenButton
         this.einzahlenButton.addActionListener((ActionListener) this);
-
-
-        auszahlenButton.setBounds(10,300,100,40);
+        centerPanel.add(einzahlenButton);
+        einzahlenButton.setPreferredSize(new Dimension(150, 40));
+        // Space
+        JLabel spaceTwo = new JLabel("");
+        spaceTwo.setPreferredSize(new Dimension(300,20));
+        centerPanel.add(spaceTwo);
+        // AuszahlenButton
         this.auszahlenButton.addActionListener((ActionListener) this);
+        centerPanel.add(auszahlenButton);
+        auszahlenButton.setPreferredSize(new Dimension(150, 40));
+        window.add(centerPanel, BorderLayout.CENTER);
 
-        window.add(this.saldoButton);
-        window.add(einzahlenButton);
-        window.add(auszahlenButton);
-        window.add(text);
-
+        // Panel Config
         window.setSize(400,500);
-        window.setLayout(null);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
 
     }
