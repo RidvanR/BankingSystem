@@ -11,9 +11,10 @@ public class Auszahlen implements ActionListener {
     JTextField auszahlenField = new JTextField();
     JLabel ausgezahlt = new JLabel();
 
+    private String loggedInUsername;
 
-    Auszahlen() {
-
+    Auszahlen(String loggedInUsername) {
+        this.loggedInUsername = loggedInUsername;
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel text = new JLabel("Welche Summe wollen Sie Auszahlen?");
         text.setBounds(100,10,250,40);
@@ -45,7 +46,7 @@ public class Auszahlen implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.backButton) {
             window.dispose();
-            new Gui();
+            new Gui(this.loggedInUsername);
         }
 
         if (e.getSource() == this.confirm) {

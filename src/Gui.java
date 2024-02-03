@@ -8,8 +8,11 @@ public class Gui implements ActionListener {
     JButton saldoButton = new JButton("Saldo ansehen");
     JButton einzahlenButton = new JButton("Einzahlen");
     JButton auszahlenButton = new JButton("Auszahlen");
+    private String loggedInUsername; // Neue Instanzvariable für den Benutzernamen
 
-    Gui() {
+
+    Gui(String loggedInUsername) {
+        this.loggedInUsername = loggedInUsername; // Setze den eingeloggten Benutzernamen
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
@@ -53,16 +56,16 @@ public class Gui implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.saldoButton) {
-            window.dispose();
-            new Saldo();
-        } else if (e.getSource() == this.einzahlenButton) {
-            window.dispose();
-            new Einzahlen();
-        } else {
-            window.dispose();
-            new Auszahlen();
-        }
+            if (e.getSource() == this.saldoButton) {
+                window.dispose();
+                new Saldo(loggedInUsername); // Übergebe den Benutzernamen an die nächste GUI
+            } else if (e.getSource() == this.einzahlenButton) {
+                window.dispose();
+                new Einzahlen(loggedInUsername); // Übergebe den Benutzernamen an die nächste GUI
+            } else {
+                window.dispose();
+                new Auszahlen(loggedInUsername); // Übergebe den Benutzernamen an die nächste GUI
+            }
     }
 
 

@@ -10,10 +10,11 @@ public class Einzahlen implements ActionListener {
 
     JTextField einzahlenField = new JTextField();
     JLabel eingezahlt = new JLabel();
+    private String loggedInUsername;
 
 
-    Einzahlen() {
-
+    Einzahlen(String loggedInUsername) {
+        this.loggedInUsername = loggedInUsername;
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel text = new JLabel("Welche Summe wollen Sie einzahlen?");
         text.setBounds(100,10,250,40);
@@ -45,7 +46,7 @@ public class Einzahlen implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.backButton) {
             window.dispose();
-            new Gui();
+            new Gui(this.loggedInUsername);
         }
 
         if (e.getSource() == this.confirm) {

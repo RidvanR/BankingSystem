@@ -53,7 +53,7 @@ public class Start implements ActionListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 window.dispose();
-                new Gui();
+                new Register();
             }
         });
         // Button
