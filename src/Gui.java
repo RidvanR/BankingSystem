@@ -8,6 +8,7 @@ public class Gui implements ActionListener {
     JButton saldoButton = new JButton("Saldo ansehen");
     JButton einzahlenButton = new JButton("Einzahlen");
     JButton auszahlenButton = new JButton("Auszahlen");
+    JButton logoutButton = new JButton("Logout");
     private String loggedInUsername; // Neue Instanzvariable für den Benutzernamen
 
 
@@ -18,10 +19,10 @@ public class Gui implements ActionListener {
         window.setLayout(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
        // Header
-        JLabel text = new JLabel("Willkommen auf Ihrem Bankkonto");
+        JLabel text = new JLabel("Willkommen auf Ihrem Bankkonto " + loggedInUsername);
         centerPanel.add(text);
-        text.setPreferredSize(new Dimension(300,60));
-        text.setFont(new Font("DIALOG", Font.BOLD, 18));
+        text.setVerticalAlignment(SwingConstants.CENTER);
+        text.setFont(new Font("DIALOG", Font.BOLD, 14));
         // Space
         JLabel spaceOne = new JLabel("");
         spaceOne.setPreferredSize(new Dimension(300,50));
@@ -46,8 +47,16 @@ public class Gui implements ActionListener {
         this.auszahlenButton.addActionListener((ActionListener) this);
         centerPanel.add(auszahlenButton);
         auszahlenButton.setPreferredSize(new Dimension(150, 40));
-        window.add(centerPanel, BorderLayout.CENTER);
+        // Space
+        JLabel spaceTri = new JLabel("");
+        spaceTri.setPreferredSize(new Dimension(300,20));
+        centerPanel.add(spaceTri);
+        // LogoutButton
+        this.logoutButton.addActionListener((ActionListener) this);
+        centerPanel.add(logoutButton);
+        logoutButton.setPreferredSize(new Dimension(150, 40));
 
+        window.add(centerPanel, BorderLayout.CENTER);
         // Panel Config
         window.setSize(400,500);
         window.setLocationRelativeTo(null);
@@ -62,9 +71,12 @@ public class Gui implements ActionListener {
             } else if (e.getSource() == this.einzahlenButton) {
                 window.dispose();
                 new Einzahlen(loggedInUsername); // Übergebe den Benutzernamen an die nächste GUI
-            } else {
+            } else if (e.getSource() == this.auszahlenButton) {
                 window.dispose();
                 new Auszahlen(loggedInUsername); // Übergebe den Benutzernamen an die nächste GUI
+            } else  {
+                window.dispose();
+                new Start();
             }
     }
 

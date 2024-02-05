@@ -2,12 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +18,7 @@ public class Start implements ActionListener {
 
     JLabel rege = new JLabel("Kein Account? Jetzt Registrieren");
 
-    JTextField passField = new JTextField(30);
+    JTextField passField = new JPasswordField(30);
 
 
     Start() {
@@ -35,7 +31,7 @@ public class Start implements ActionListener {
         // Header
         centerPanel.add(text);
         text.setFont(new Font("DIALOG", Font.BOLD, 18));
-        text.setPreferredSize(new Dimension(290,60));
+        text.setVerticalAlignment(SwingConstants.CENTER);
         // Anmeldename
         centerPanel.add(new JLabel("Anmeldename:"));
         loginField.setPreferredSize(new Dimension(200,30));
@@ -64,7 +60,7 @@ public class Start implements ActionListener {
 
         window.add(centerPanel, BorderLayout.CENTER);
         // Layout
-        window.setSize(400,500);
+        window.setSize(350,500);
         // window.getContentPane().setBackground(Color.black);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
@@ -81,10 +77,12 @@ public class Start implements ActionListener {
                 Connection connection = DatabaseConnection.getConnection();
                 Statement statement = connection.createStatement();
 
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE username = '" + enteredUsername + "' AND password = '" + enteredPassword + "'");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM accounts WHERE username = '" + enteredUsername + "' AND passwort = '" + enteredPassword + "'");
 
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(null, "Anmeldung erfolgreich!");
+                    window.dispose();
+                    new Gui(resultSet.getString(2));
                 } else {
                     JOptionPane.showMessageDialog(null, "Anmeldung fehlgeschlagen. Überprüfen Sie Ihre Anmeldedaten.");
                 }

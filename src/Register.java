@@ -27,7 +27,7 @@ public class Register implements ActionListener {
 
         centerPanel.add(text);
         text.setFont(new Font("DIALOG", Font.BOLD, 16));
-        text.setPreferredSize(new Dimension(290, 60));
+        text.setVerticalAlignment(SwingConstants.CENTER);
 
         centerPanel.add(new JLabel("Geben Sie Ihren Vornamen ein:"));
         firstnameField.setPreferredSize(new Dimension(200, 30));

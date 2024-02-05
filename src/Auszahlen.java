@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,39 +9,59 @@ public class Auszahlen implements ActionListener {
     JButton backButton = new JButton("Zurueck");
     JButton confirm = new JButton("Bestaetigen");
 
-    JTextField auszahlenField = new JTextField();
+    JTextField auszahlenField = new JTextField(30);
     JLabel ausgezahlt = new JLabel();
 
     private String loggedInUsername;
 
     Auszahlen(String loggedInUsername) {
-        this.loggedInUsername = loggedInUsername;
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel text = new JLabel("Welche Summe wollen Sie Auszahlen?");
-        text.setBounds(100,10,250,40);
+        window.setLayout(new BorderLayout());
+        this.loggedInUsername = loggedInUsername;
+        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        this.auszahlenField.setBounds(130,70,100,30);
+        JLabel text = new JLabel(loggedInUsername + ". Welche Summe wollen Sie Auszahlen?");
+        text.setFont(new Font("DIALOG", Font.BOLD, 16));
+        text.setVerticalAlignment(SwingConstants.CENTER);
 
-        this.confirm.setBounds(130,120,130,40);
+        JLabel filler = new JLabel("");
+        filler.setPreferredSize(new Dimension(400, 40));
+
+        this.auszahlenField.setPreferredSize(new Dimension(200,30));
+
+        JLabel filler2 = new JLabel("");
+        filler2.setPreferredSize(new Dimension(400, 40));
+
+        this.confirm.setPreferredSize(new Dimension(150,40));
+        this.confirm.setVerticalAlignment(SwingConstants.CENTER);
         this.confirm.addActionListener(this);
+
+        JLabel filler3 = new JLabel("");
+        filler3.setPreferredSize(new Dimension(400, 40));
 
         this.ausgezahlt.setBounds(130,170,400,30);
 
-        this.backButton.setBounds(100,300,200,40);
+        this.backButton.setPreferredSize(new Dimension(150,40));
+        this.backButton.setVerticalAlignment(SwingConstants.CENTER);
         this.backButton.addActionListener((ActionListener) this);
 
 
-        window.add(this.backButton);
-        window.add(text);
-        window.add(auszahlenField);
-        window.add(this.ausgezahlt);
-        window.add(confirm);
+        centerPanel.add(text);
+        centerPanel.add(filler);
+        centerPanel.add(auszahlenField);
+        centerPanel.add(filler2);
+        centerPanel.add(this.ausgezahlt);
+        centerPanel.add(filler3);
+        centerPanel.add(confirm);
+        centerPanel.add(this.backButton);
+        window.add(centerPanel, BorderLayout.CENTER);
 
-        window.setSize(400,500);
-        window.setLayout(null);
+        window.setSize(400, 500);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -54,9 +75,14 @@ public class Auszahlen implements ActionListener {
             try {
                 Main.giro1.setAuszahlung(Double.parseDouble(data));
                 this.ausgezahlt.setText("Sie haben ausgezahlt: " + Main.giro1.getCurrentAuszahlung());
+                this.confirm.setEnabled(false);
             } catch (NumberFormatException ignore) {
                 this.ausgezahlt.setText("Zahlen eingeben!");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Auszahlen("Hallo");
     }
 }
