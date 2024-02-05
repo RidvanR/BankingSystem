@@ -28,6 +28,7 @@ public class Start implements ActionListener {
         window.setLayout(new BorderLayout());
 
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(Color.white);
         // Header
         centerPanel.add(text);
         text.setFont(new Font("DIALOG", Font.BOLD, 18));
@@ -54,6 +55,8 @@ public class Start implements ActionListener {
         });
         // Button
         confirmButton.setPreferredSize(new Dimension(150, 40));
+        confirmButton.setBackground(Color.green);
+        confirmButton.setForeground(Color.white);
         centerPanel.add(confirmButton);
         confirmButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         confirmButton.addActionListener(this);

@@ -19,8 +19,10 @@ public class Auszahlen implements ActionListener {
         window.setLayout(new BorderLayout());
         this.loggedInUsername = loggedInUsername;
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(Color.darkGray);
 
         JLabel text = new JLabel(loggedInUsername + ". Welche Summe wollen Sie Auszahlen?");
+        text.setForeground(Color.WHITE);
         text.setFont(new Font("DIALOG", Font.BOLD, 16));
         text.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -33,6 +35,8 @@ public class Auszahlen implements ActionListener {
         filler2.setPreferredSize(new Dimension(400, 40));
 
         this.confirm.setPreferredSize(new Dimension(150,40));
+        confirm.setBackground(Color.GREEN);
+        confirm.setForeground(Color.white);
         this.confirm.setVerticalAlignment(SwingConstants.CENTER);
         this.confirm.addActionListener(this);
 
@@ -40,6 +44,7 @@ public class Auszahlen implements ActionListener {
         filler3.setPreferredSize(new Dimension(400, 40));
 
         this.ausgezahlt.setBounds(130,170,400,30);
+        this.ausgezahlt.setForeground(Color.WHITE);
 
         this.backButton.setPreferredSize(new Dimension(150,40));
         this.backButton.setVerticalAlignment(SwingConstants.CENTER);

@@ -12,10 +12,12 @@ public class Saldo implements ActionListener {
     Saldo(String loggedInUsername) {
         window.setLayout(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(Color.darkGray);
         this.loggedInUsername = loggedInUsername;
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel text = new JLabel(loggedInUsername + " Ihr Saldo ist:");
+        text.setForeground(Color.WHITE);
         text.setFont(new Font("DIALOG", Font.BOLD, 16));
         text.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -24,18 +26,20 @@ public class Saldo implements ActionListener {
 
         JLabel saldo = new JLabel(String.valueOf(Main.giro1.getCurrentSaldo()));
         saldo.setFont(new Font("DIALOG", Font.BOLD, 13));
+        saldo.setForeground(Color.WHITE);
         saldo.setVerticalAlignment(SwingConstants.CENTER);
-        if (Main.giro1.getCurrentSaldo() > 0) {
+        if (Main.giro1.getCurrentSaldo() > -0.1) {
             saldo.setForeground(Color.blue);
         } else {
             saldo.setForeground(Color.red);
         }
 
-
         JLabel filler2 = new JLabel("");
         filler2.setPreferredSize(new Dimension(400, 70));
 
         this.backButton.setPreferredSize(new Dimension(150,40));
+        backButton.setBackground(Color.RED);
+        backButton.setForeground(Color.white);
         this.backButton.setVerticalAlignment(SwingConstants.CENTER);
         this.backButton.addActionListener(this);
 

@@ -9,8 +9,8 @@ public class Einzahlen implements ActionListener {
     JButton backButton = new JButton("Zurueck");
     JButton confirm = new JButton("Bestaetigen");
 
-    JTextField auszahlenField = new JTextField(30);
-    JLabel ausgezahlt = new JLabel();
+    JTextField einzahlenField = new JTextField(30);
+    JLabel eingezahlt = new JLabel();
 
     private String loggedInUsername;
 
@@ -19,27 +19,32 @@ public class Einzahlen implements ActionListener {
         window.setLayout(new BorderLayout());
         this.loggedInUsername = loggedInUsername;
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(Color.darkGray);
 
         JLabel text = new JLabel(loggedInUsername + ". Welche Summe wollen Sie Einzahlen?");
+        text.setForeground(Color.WHITE);
         text.setFont(new Font("DIALOG", Font.BOLD, 16));
         text.setVerticalAlignment(SwingConstants.CENTER);
 
         JLabel filler = new JLabel("");
         filler.setPreferredSize(new Dimension(400, 40));
 
-        this.auszahlenField.setPreferredSize(new Dimension(200,30));
+        this.einzahlenField.setPreferredSize(new Dimension(200,30));
 
         JLabel filler2 = new JLabel("");
         filler2.setPreferredSize(new Dimension(400, 40));
 
         this.confirm.setPreferredSize(new Dimension(150,40));
+        confirm.setBackground(Color.GREEN);
+        confirm.setForeground(Color.white);
         this.confirm.setVerticalAlignment(SwingConstants.CENTER);
         this.confirm.addActionListener(this);
 
         JLabel filler3 = new JLabel("");
         filler3.setPreferredSize(new Dimension(400, 40));
 
-        this.ausgezahlt.setBounds(130,170,400,30);
+        this.eingezahlt.setBounds(130,170,400,30);
+        this.eingezahlt.setForeground(Color.WHITE);
 
         this.backButton.setPreferredSize(new Dimension(150,40));
         this.backButton.setVerticalAlignment(SwingConstants.CENTER);
@@ -48,9 +53,9 @@ public class Einzahlen implements ActionListener {
 
         centerPanel.add(text);
         centerPanel.add(filler);
-        centerPanel.add(auszahlenField);
+        centerPanel.add(einzahlenField);
         centerPanel.add(filler2);
-        centerPanel.add(this.ausgezahlt);
+        centerPanel.add(this.eingezahlt);
         centerPanel.add(filler3);
         centerPanel.add(confirm);
         centerPanel.add(this.backButton);
@@ -71,13 +76,13 @@ public class Einzahlen implements ActionListener {
         }
 
         if (e.getSource() == this.confirm) {
-            String data = this.auszahlenField.getText();
+            String data = this.einzahlenField.getText();
             try {
                 Main.giro1.setEinzahlung(Double.parseDouble(data));
-                this.ausgezahlt.setText("Sie haben eingezahlt: " + Main.giro1.getCurrentEinzahlung());
+                this.eingezahlt.setText("Sie haben eingezahlt: " + Main.giro1.getCurrentEinzahlung());
                 this.confirm.setEnabled(false);
             } catch (NumberFormatException ignore) {
-                this.ausgezahlt.setText("Zahlen eingeben!");
+                this.eingezahlt.setText("Zahlen eingeben!");
             }
         }
     }

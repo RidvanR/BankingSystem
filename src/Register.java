@@ -24,9 +24,11 @@ public class Register implements ActionListener {
         window.setLayout(new BorderLayout());
 
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(Color.white);
 
         centerPanel.add(text);
         text.setFont(new Font("DIALOG", Font.BOLD, 16));
+        text.setForeground(Color.white);
         text.setVerticalAlignment(SwingConstants.CENTER);
 
         centerPanel.add(new JLabel("Geben Sie Ihren Vornamen ein:"));
@@ -46,9 +48,11 @@ public class Register implements ActionListener {
         centerPanel.add(passField);
 
         confirmButton.setPreferredSize(new Dimension(150, 40));
-        centerPanel.add(confirmButton);
         confirmButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        confirmButton.setBackground(Color.green);
+        confirmButton.setForeground(Color.white);
         confirmButton.addActionListener(this);
+        centerPanel.add(confirmButton);
 
         window.add(centerPanel, BorderLayout.CENTER);
 

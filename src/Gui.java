@@ -22,6 +22,7 @@ public class Gui implements ActionListener {
         JLabel text = new JLabel("Willkommen auf Ihrem Bankkonto " + loggedInUsername);
         centerPanel.add(text);
         text.setVerticalAlignment(SwingConstants.CENTER);
+        text.setForeground(Color.white);
         text.setFont(new Font("DIALOG", Font.BOLD, 14));
         // Space
         JLabel spaceOne = new JLabel("");
@@ -29,6 +30,8 @@ public class Gui implements ActionListener {
         centerPanel.add(spaceOne);
         // SaldoButton
         this.saldoButton.addActionListener((ActionListener) this);
+        saldoButton.setBackground(Color.RED);
+        saldoButton.setForeground(Color.white);
         centerPanel.add(this.saldoButton);
         saldoButton.setPreferredSize(new Dimension(150, 40));
         // Space
@@ -37,6 +40,8 @@ public class Gui implements ActionListener {
         centerPanel.add(space);
         // EinzahlenButton
         this.einzahlenButton.addActionListener((ActionListener) this);
+        einzahlenButton.setBackground(Color.RED);
+        einzahlenButton.setForeground(Color.white);
         centerPanel.add(einzahlenButton);
         einzahlenButton.setPreferredSize(new Dimension(150, 40));
         // Space
@@ -45,6 +50,8 @@ public class Gui implements ActionListener {
         centerPanel.add(spaceTwo);
         // AuszahlenButton
         this.auszahlenButton.addActionListener((ActionListener) this);
+        auszahlenButton.setBackground(Color.RED);
+        auszahlenButton.setForeground(Color.white);
         centerPanel.add(auszahlenButton);
         auszahlenButton.setPreferredSize(new Dimension(150, 40));
         // Space
@@ -53,6 +60,8 @@ public class Gui implements ActionListener {
         centerPanel.add(spaceTri);
         // LogoutButton
         this.logoutButton.addActionListener((ActionListener) this);
+        logoutButton.setBackground(Color.RED);
+        logoutButton.setForeground(Color.white);
         centerPanel.add(logoutButton);
         logoutButton.setPreferredSize(new Dimension(150, 40));
 
@@ -60,6 +69,7 @@ public class Gui implements ActionListener {
         // Panel Config
         window.setSize(400,500);
         window.setLocationRelativeTo(null);
+        centerPanel.setBackground(Color.DARK_GRAY);
         window.setVisible(true);
 
     }
@@ -78,6 +88,10 @@ public class Gui implements ActionListener {
                 window.dispose();
                 new Start();
             }
+    }
+
+    public static void main(String[] args) {
+        new Gui("Test");
     }
 
 
